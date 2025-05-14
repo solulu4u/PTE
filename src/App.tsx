@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage"
 import DashboardPage from "./pages/DashboardPage"
 import LoginForm from "./components/auth/LoginForm"
 import RegisterForm from "./components/auth/RegisterForm"
+import SubscriptionPage from "./pages/SubscriptionPage"
 
 // Speaking Components
 import ReadAloudListPage from "./pages/practice/ReadAloudListPage"
@@ -162,6 +163,7 @@ function App() {
                             {/* Main Routes */}
                             <Route path="/" element={<HomePage />} />
                             <Route path="/dashboard" element={<DashboardPage />} />
+                            <Route path="/subscription" element={<SubscriptionPage />} />
                             <Route
                                 path="/login"
                                 element={
