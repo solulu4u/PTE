@@ -7,6 +7,7 @@ import LoginForm from "./components/auth/LoginForm"
 import RegisterForm from "./components/auth/RegisterForm"
 
 // Speaking Components
+import ReadAloudListPage from "./pages/practice/ReadAloudListPage"
 import ReadAloud from "./components/practice/speaking/ReadAloud"
 import RepeatSentence from "./components/practice/speaking/RepeatSentence"
 import DescribeImage from "./components/practice/speaking/DescribeImage"
@@ -55,11 +56,6 @@ function App() {
     }
 
     const speakingRoutes = [
-        {
-            path: "/practice/speaking/read-aloud",
-            Component: ReadAloud,
-            questionKey: "readAloud",
-        },
         {
             path: "/practice/speaking/repeat-sentence",
             Component: RepeatSentence,
@@ -165,10 +161,7 @@ function App() {
                         <Routes>
                             {/* Main Routes */}
                             <Route path="/" element={<HomePage />} />
-                            <Route
-                                path="/dashboard"
-                                element={<DashboardPage />}
-                            />
+                            <Route path="/dashboard" element={<DashboardPage />} />
                             <Route
                                 path="/login"
                                 element={
@@ -184,6 +177,16 @@ function App() {
                                         <RegisterForm />
                                     </div>
                                 }
+                            />
+
+                            {/* Read Aloud Routes */}
+                            <Route
+                                path="/practice/speaking/read-aloud"
+                                element={<ReadAloudListPage />}
+                            />
+                            <Route
+                                path="/practice/speaking/read-aloud/:id"
+                                element={createRouteElement(ReadAloud, "readAloud")}
                             />
 
                             {/* Practice Routes */}
