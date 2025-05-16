@@ -8,22 +8,22 @@ export const readingApi = {
                 title: "Basic Fill in the Blanks",
                 difficulty: "easy",
                 completed: true,
-                score: 85
+                score: 85,
             },
             {
                 id: 2,
                 title: "Intermediate Vocabulary",
                 difficulty: "medium",
                 completed: false,
-                score: null
+                score: null,
             },
             {
                 id: 3,
                 title: "Advanced Academic Text",
                 difficulty: "hard",
                 completed: false,
-                score: null
-            }
+                score: null,
+            },
         ])
-    }
+    },
 }

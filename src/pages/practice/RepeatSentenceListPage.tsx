@@ -2,7 +2,10 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { ArrowLeft, Clock, CheckCircle } from "lucide-react"
 import Button from "../../components/common/Button"
-import { readAloudLessons, ReadAloudLesson } from "../../data/readAloud"
+import {
+    repeatSentenceLessons,
+    RepeatSentenceLesson,
+} from "../data/repeatSentence"
 import { practiceQuestions } from "../../data/sampleData"
 
 const difficultyColors = {
@@ -17,12 +20,12 @@ const difficultyLabels = {
     advanced: "Advanced",
 }
 
-const ReadAloudListPage = () => {
+const RepeatSentenceListPage = () => {
     const navigate = useNavigate()
     const [selectedDifficulty, setSelectedDifficulty] = useState<string>("all")
     const [showCompleted, setShowCompleted] = useState<boolean>(false)
 
-    const filteredLessons = readAloudLessons.filter(lesson => {
+    const filteredLessons = repeatSentenceLessons.filter(lesson => {
         if (
             selectedDifficulty !== "all" &&
             lesson.difficulty !== selectedDifficulty
@@ -35,9 +38,9 @@ const ReadAloudListPage = () => {
         return true
     })
 
-    const handleLessonSelect = (lesson: ReadAloudLesson) => {
-        navigate(`/practice/speaking/read-aloud/${lesson.id}`, {
-            state: { lesson, sample: practiceQuestions.readAloud },
+    const handleLessonSelect = (lesson: RepeatSentenceLesson) => {
+        navigate(`/practice/speaking/repeat-sentence/${lesson.id}`, {
+            state: { lesson, sample: practiceQuestions.repeatSentence },
         })
     }
 
@@ -56,11 +59,11 @@ const ReadAloudListPage = () => {
                     </Button>
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">
-                            Read Aloud Practice
+                            Repeat Sentence Practice
                         </h1>
                         <p className="text-gray-600 mt-1">
-                            Improve your pronunciation and fluency with these
-                            carefully selected passages
+                            Practice repeating sentences accurately to improve
+                            your speaking and listening skills
                         </p>
                     </div>
                 </div>
@@ -184,4 +187,4 @@ const ReadAloudListPage = () => {
     )
 }
 
-export default ReadAloudListPage
+export default RepeatSentenceListPage

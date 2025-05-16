@@ -13,7 +13,16 @@ export const practiceQuestions = {
     repeatSentence: {
         id: 2,
         audio_url: sampleAudioUrl,
-        time_limit: 40,
+        text: "The university library is open twenty-four hours during the exam period.",
+        time_limit: 15,
+        transcript:
+            "The university library is open twenty-four hours during the exam period.",
+        difficulty: "intermediate",
+        tips: [
+            "Listen for key numbers (twenty-four)",
+            "Focus on the main subject (library)",
+            "Pay attention to the time context (exam period)",
+        ],
     },
 
     describeImage: {

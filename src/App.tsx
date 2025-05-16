@@ -8,6 +8,7 @@ import RegisterForm from "./components/auth/RegisterForm"
 import SubscriptionPage from "./pages/SubscriptionPage"
 import FlashcardsPage from "./pages/flashcards/FlashcardsPage"
 import FlashcardStudyPage from "./pages/flashcards/FlashcardStudyPage"
+import CreateDeckPage from "./pages/flashcards/CreateDeckPage"
 
 // Speaking Components
 import ReadAloudListPage from "./pages/practice/ReadAloudListPage"
@@ -37,6 +38,7 @@ import HighlightIncorrectWords from "./components/practice/listening/HighlightIn
 import WriteFromDictation from "./components/practice/listening/WriteFromDictation"
 
 import { AuthProvider } from "./hooks/useAuth"
+import { sampleAudioUrl, practiceQuestions } from "./data/sampleData"
 
 function App() {
     const handleComplete = (result: any) => {
@@ -66,8 +68,14 @@ function App() {
                         <Routes>
                             {/* Main Routes */}
                             <Route path="/" element={<HomePage />} />
-                            <Route path="/dashboard" element={<DashboardPage />} />
-                            <Route path="/subscription" element={<SubscriptionPage />} />
+                            <Route
+                                path="/dashboard"
+                                element={<DashboardPage />}
+                            />
+                            <Route
+                                path="/subscription"
+                                element={<SubscriptionPage />}
+                            />
                             <Route
                                 path="/login"
                                 element={
@@ -86,8 +94,18 @@ function App() {
                             />
 
                             {/* Flashcard Routes */}
-                            <Route path="/flashcards" element={<FlashcardsPage />} />
-                            <Route path="/flashcards/:deckId" element={<FlashcardStudyPage />} />
+                            <Route
+                                path="/flashcards"
+                                element={<FlashcardsPage />}
+                            />
+                            <Route
+                                path="/flashcards/create"
+                                element={<CreateDeckPage />}
+                            />
+                            <Route
+                                path="/flashcards/study/:deckId"
+                                element={<FlashcardStudyPage />}
+                            />
 
                             {/* Practice Routes */}
                             <Route
@@ -96,75 +114,129 @@ function App() {
                             />
                             <Route
                                 path="/practice/speaking/read-aloud/:id"
-                                element={createRouteElement(ReadAloud, "readAloud")}
+                                element={createRouteElement(
+                                    ReadAloud,
+                                    "readAloud"
+                                )}
                             />
                             <Route
                                 path="/practice/speaking/repeat-sentence"
-                                element={createRouteElement(RepeatSentence, "repeatSentence")}
+                                element={createRouteElement(
+                                    RepeatSentence,
+                                    "repeatSentence"
+                                )}
                             />
                             <Route
                                 path="/practice/speaking/describe-image"
-                                element={createRouteElement(DescribeImage, "describeImage")}
+                                element={createRouteElement(
+                                    DescribeImage,
+                                    "describeImage"
+                                )}
                             />
                             <Route
                                 path="/practice/speaking/retell-lecture"
-                                element={createRouteElement(RetellLecture, "retellLecture")}
+                                element={createRouteElement(
+                                    RetellLecture,
+                                    "retellLecture"
+                                )}
                             />
                             <Route
                                 path="/practice/speaking/short-question"
-                                element={createRouteElement(AnswerShortQuestion, "answerShortQuestion")}
+                                element={createRouteElement(
+                                    AnswerShortQuestion,
+                                    "answerShortQuestion"
+                                )}
                             />
                             <Route
                                 path="/practice/writing/summarize"
-                                element={createRouteElement(SummarizeWrittenText, "summarizeWrittenText")}
+                                element={createRouteElement(
+                                    SummarizeWrittenText,
+                                    "summarizeWrittenText"
+                                )}
                             />
                             <Route
                                 path="/practice/writing/essay"
-                                element={createRouteElement(EssayWriting, "essayWriting")}
+                                element={createRouteElement(
+                                    EssayWriting,
+                                    "essayWriting"
+                                )}
                             />
                             <Route
                                 path="/practice/reading/fill-blanks"
-                                element={createRouteElement(FillInTheBlanks, "fillInTheBlanks")}
+                                element={createRouteElement(
+                                    FillInTheBlanks,
+                                    "fillInTheBlanks"
+                                )}
                             />
                             <Route
                                 path="/practice/reading/multiple-choice"
-                                element={createRouteElement(MultipleChoiceQuestions, "multipleChoiceQuestions")}
+                                element={createRouteElement(
+                                    MultipleChoiceQuestions,
+                                    "multipleChoiceQuestions"
+                                )}
                             />
                             <Route
                                 path="/practice/reading/reorder"
-                                element={createRouteElement(ReorderParagraphs, "reorderParagraphs")}
+                                element={createRouteElement(
+                                    ReorderParagraphs,
+                                    "reorderParagraphs"
+                                )}
                             />
                             <Route
                                 path="/practice/reading/rw-fill-blanks"
-                                element={createRouteElement(ReadingWritingFillBlanks, "readingWritingFillBlanks")}
+                                element={createRouteElement(
+                                    ReadingWritingFillBlanks,
+                                    "readingWritingFillBlanks"
+                                )}
                             />
                             <Route
                                 path="/practice/listening/summarize"
-                                element={createRouteElement(SummarizeSpokenText, "summarizeSpokenText")}
+                                element={createRouteElement(
+                                    SummarizeSpokenText,
+                                    "summarizeSpokenText"
+                                )}
                             />
                             <Route
                                 path="/practice/listening/highlight-summary"
-                                element={createRouteElement(HighlightCorrectSummary, "highlightCorrectSummary")}
+                                element={createRouteElement(
+                                    HighlightCorrectSummary,
+                                    "highlightCorrectSummary"
+                                )}
                             />
                             <Route
                                 path="/practice/listening/multiple-choice"
-                                element={createRouteElement(MultipleChoiceListening, "multipleChoiceListening")}
+                                element={createRouteElement(
+                                    MultipleChoiceListening,
+                                    "multipleChoiceListening"
+                                )}
                             />
                             <Route
                                 path="/practice/listening/fill-blanks"
-                                element={createRouteElement(FillInTheBlanksListening, "fillInTheBlanksListening")}
+                                element={createRouteElement(
+                                    FillInTheBlanksListening,
+                                    "fillInTheBlanksListening"
+                                )}
                             />
                             <Route
                                 path="/practice/listening/select-missing"
-                                element={createRouteElement(SelectMissingWord, "selectMissingWord")}
+                                element={createRouteElement(
+                                    SelectMissingWord,
+                                    "selectMissingWord"
+                                )}
                             />
                             <Route
                                 path="/practice/listening/highlight-incorrect"
-                                element={createRouteElement(HighlightIncorrectWords, "highlightIncorrectWords")}
+                                element={createRouteElement(
+                                    HighlightIncorrectWords,
+                                    "highlightIncorrectWords"
+                                )}
                             />
                             <Route
                                 path="/practice/listening/dictation"
-                                element={createRouteElement(WriteFromDictation, "writeFromDictation")}
+                                element={createRouteElement(
+                                    WriteFromDictation,
+                                    "writeFromDictation"
+                                )}
                             />
                         </Routes>
                     </main>
