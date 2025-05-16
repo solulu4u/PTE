@@ -6,6 +6,8 @@ import DashboardPage from "./pages/DashboardPage"
 import LoginForm from "./components/auth/LoginForm"
 import RegisterForm from "./components/auth/RegisterForm"
 import SubscriptionPage from "./pages/SubscriptionPage"
+import FlashcardsPage from "./pages/flashcards/FlashcardsPage"
+import FlashcardStudyPage from "./pages/flashcards/FlashcardStudyPage"
 
 // Speaking Components
 import ReadAloudListPage from "./pages/practice/ReadAloudListPage"
@@ -35,7 +37,6 @@ import HighlightIncorrectWords from "./components/practice/listening/HighlightIn
 import WriteFromDictation from "./components/practice/listening/WriteFromDictation"
 
 import { AuthProvider } from "./hooks/useAuth"
-import { sampleAudioUrl, practiceQuestions } from "./data/sampleData"
 
 function App() {
     const handleComplete = (result: any) => {
@@ -55,103 +56,6 @@ function App() {
             </div>
         )
     }
-
-    const speakingRoutes = [
-        {
-            path: "/practice/speaking/repeat-sentence",
-            Component: RepeatSentence,
-            questionKey: "repeatSentence",
-        },
-        {
-            path: "/practice/speaking/describe-image",
-            Component: DescribeImage,
-            questionKey: "describeImage",
-        },
-        {
-            path: "/practice/speaking/retell-lecture",
-            Component: RetellLecture,
-            questionKey: "retellLecture",
-        },
-        {
-            path: "/practice/speaking/short-question",
-            Component: AnswerShortQuestion,
-            questionKey: "answerShortQuestion",
-        },
-    ]
-
-    const writingRoutes = [
-        {
-            path: "/practice/writing/summarize",
-            Component: SummarizeWrittenText,
-            questionKey: "summarizeWrittenText",
-        },
-        {
-            path: "/practice/writing/essay",
-            Component: EssayWriting,
-            questionKey: "essayWriting",
-        },
-    ]
-
-    const readingRoutes = [
-        {
-            path: "/practice/reading/fill-blanks",
-            Component: FillInTheBlanks,
-            questionKey: "fillInTheBlanks",
-        },
-        {
-            path: "/practice/reading/multiple-choice",
-            Component: MultipleChoiceQuestions,
-            questionKey: "multipleChoiceQuestions",
-        },
-        {
-            path: "/practice/reading/reorder",
-            Component: ReorderParagraphs,
-            questionKey: "reorderParagraphs",
-        },
-        {
-            path: "/practice/reading/rw-fill-blanks",
-            Component: ReadingWritingFillBlanks,
-            questionKey: "readingWritingFillBlanks",
-        },
-    ]
-
-    const listeningRoutes = [
-        {
-            path: "/practice/listening/summarize",
-            Component: SummarizeSpokenText,
-            questionKey: "summarizeSpokenText",
-        },
-        {
-            path: "/practice/listening/highlight-summary",
-            Component: HighlightCorrectSummary,
-            questionKey: "highlightCorrectSummary",
-        },
-        {
-            path: "/practice/listening/multiple-choice",
-            Component: MultipleChoiceListening,
-            questionKey: "multipleChoiceListening",
-        },
-        {
-            path: "/practice/listening/fill-blanks",
-            Component: FillInTheBlanksListening,
-            questionKey: "fillInTheBlanksListening",
-        },
-        {
-            path: "/practice/listening/select-missing",
-            Component: SelectMissingWord,
-            questionKey: "selectMissingWord",
-        },
-        {
-            path: "/practice/listening/highlight-incorrect",
-            Component: HighlightIncorrectWords,
-            questionKey: "highlightIncorrectWords",
-        },
-        {
-            path: "/practice/listening/dictation",
-            Component: WriteFromDictation,
-            questionKey: "writeFromDictation",
-        },
-    ]
 
     return (
         <AuthProvider>
@@ -181,7 +85,11 @@ function App() {
                                 }
                             />
 
-                            {/* Read Aloud Routes */}
+                            {/* Flashcard Routes */}
+                            <Route path="/flashcards" element={<FlashcardsPage />} />
+                            <Route path="/flashcards/:deckId" element={<FlashcardStudyPage />} />
+
+                            {/* Practice Routes */}
                             <Route
                                 path="/practice/speaking/read-aloud"
                                 element={<ReadAloudListPage />}
@@ -190,23 +98,74 @@ function App() {
                                 path="/practice/speaking/read-aloud/:id"
                                 element={createRouteElement(ReadAloud, "readAloud")}
                             />
-
-                            {/* Practice Routes */}
-                            {[
-                                ...speakingRoutes,
-                                ...writingRoutes,
-                                ...readingRoutes,
-                                ...listeningRoutes,
-                            ].map(({ path, Component, questionKey }) => (
-                                <Route
-                                    key={path}
-                                    path={path}
-                                    element={createRouteElement(
-                                        Component,
-                                        questionKey as keyof typeof practiceQuestions
-                                    )}
-                                />
-                            ))}
+                            <Route
+                                path="/practice/speaking/repeat-sentence"
+                                element={createRouteElement(RepeatSentence, "repeatSentence")}
+                            />
+                            <Route
+                                path="/practice/speaking/describe-image"
+                                element={createRouteElement(DescribeImage, "describeImage")}
+                            />
+                            <Route
+                                path="/practice/speaking/retell-lecture"
+                                element={createRouteElement(RetellLecture, "retellLecture")}
+                            />
+                            <Route
+                                path="/practice/speaking/short-question"
+                                element={createRouteElement(AnswerShortQuestion, "answerShortQuestion")}
+                            />
+                            <Route
+                                path="/practice/writing/summarize"
+                                element={createRouteElement(SummarizeWrittenText, "summarizeWrittenText")}
+                            />
+                            <Route
+                                path="/practice/writing/essay"
+                                element={createRouteElement(EssayWriting, "essayWriting")}
+                            />
+                            <Route
+                                path="/practice/reading/fill-blanks"
+                                element={createRouteElement(FillInTheBlanks, "fillInTheBlanks")}
+                            />
+                            <Route
+                                path="/practice/reading/multiple-choice"
+                                element={createRouteElement(MultipleChoiceQuestions, "multipleChoiceQuestions")}
+                            />
+                            <Route
+                                path="/practice/reading/reorder"
+                                element={createRouteElement(ReorderParagraphs, "reorderParagraphs")}
+                            />
+                            <Route
+                                path="/practice/reading/rw-fill-blanks"
+                                element={createRouteElement(ReadingWritingFillBlanks, "readingWritingFillBlanks")}
+                            />
+                            <Route
+                                path="/practice/listening/summarize"
+                                element={createRouteElement(SummarizeSpokenText, "summarizeSpokenText")}
+                            />
+                            <Route
+                                path="/practice/listening/highlight-summary"
+                                element={createRouteElement(HighlightCorrectSummary, "highlightCorrectSummary")}
+                            />
+                            <Route
+                                path="/practice/listening/multiple-choice"
+                                element={createRouteElement(MultipleChoiceListening, "multipleChoiceListening")}
+                            />
+                            <Route
+                                path="/practice/listening/fill-blanks"
+                                element={createRouteElement(FillInTheBlanksListening, "fillInTheBlanksListening")}
+                            />
+                            <Route
+                                path="/practice/listening/select-missing"
+                                element={createRouteElement(SelectMissingWord, "selectMissingWord")}
+                            />
+                            <Route
+                                path="/practice/listening/highlight-incorrect"
+                                element={createRouteElement(HighlightIncorrectWords, "highlightIncorrectWords")}
+                            />
+                            <Route
+                                path="/practice/listening/dictation"
+                                element={createRouteElement(WriteFromDictation, "writeFromDictation")}
+                            />
                         </Routes>
                     </main>
                     <Footer />
