@@ -1,182 +1,73 @@
 import { Link } from 'react-router-dom';
-import { FacebookIcon, TwitterIcon, InstagramIcon, YoutubeIcon } from 'lucide-react';
 
 const Footer = () => {
+  const navigation = {
+    main: [
+      { name: 'About', href: '/about' },
+      { name: 'Blog', href: '/blog' },
+      { name: 'Contact', href: '/contact' },
+      { name: 'Privacy', href: '/privacy' },
+      { name: 'Terms', href: '/terms' },
+    ],
+    social: [
+      {
+        name: 'Facebook',
+        href: '#',
+        icon: (props: any) => (
+          <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+            <path
+              fillRule="evenodd"
+              d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+              clipRule="evenodd"
+            />
+          </svg>
+        ),
+      },
+      {
+        name: 'Twitter',
+        href: '#',
+        icon: (props: any) => (
+          <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+          </svg>
+        ),
+      },
+    ],
+  };
+
   return (
-    <footer className="bg-gray-50 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">About</h3>
-            <p className="text-gray-600 mb-4">
-              PTE Practice is a comprehensive platform designed to help test-takers prepare for the
-              PTE Academic exam with realistic practice exercises and mock tests.
-            </p>
-            <div className="flex space-x-4">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-primary-500 transition-colors"
-                aria-label="Facebook"
+    <footer className="bg-white">
+      <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav
+          className="-mx-5 -my-2 flex flex-wrap justify-center"
+          aria-label="Footer"
+        >
+          {navigation.main.map((item) => (
+            <div key={item.name} className="px-5 py-2">
+              <Link
+                to={item.href}
+                className="text-base text-gray-500 hover:text-gray-900"
               >
-                <FacebookIcon size={20} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-primary-500 transition-colors"
-                aria-label="Twitter"
-              >
-                <TwitterIcon size={20} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-primary-500 transition-colors"
-                aria-label="Instagram"
-              >
-                <InstagramIcon size={20} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-primary-500 transition-colors"
-                aria-label="YouTube"
-              >
-                <YoutubeIcon size={20} />
-              </a>
+                {item.name}
+              </Link>
             </div>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/" className="text-gray-600 hover:text-primary-500 transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/practice"
-                  className="text-gray-600 hover:text-primary-500 transition-colors"
-                >
-                  Practice
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/mock-tests"
-                  className="text-gray-600 hover:text-primary-500 transition-colors"
-                >
-                  Mock Tests
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/resources"
-                  className="text-gray-600 hover:text-primary-500 transition-colors"
-                >
-                  Resources
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/pricing"
-                  className="text-gray-600 hover:text-primary-500 transition-colors"
-                >
-                  Pricing
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Practice</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/practice/speaking"
-                  className="text-gray-600 hover:text-primary-500 transition-colors"
-                >
-                  Speaking
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/practice/writing"
-                  className="text-gray-600 hover:text-primary-500 transition-colors"
-                >
-                  Writing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/practice/reading"
-                  className="text-gray-600 hover:text-primary-500 transition-colors"
-                >
-                  Reading
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/practice/listening"
-                  className="text-gray-600 hover:text-primary-500 transition-colors"
-                >
-                  Listening
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Support</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-gray-600 hover:text-primary-500 transition-colors"
-                >
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className="text-gray-600 hover:text-primary-500 transition-colors">
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/privacy"
-                  className="text-gray-600 hover:text-primary-500 transition-colors"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/terms"
-                  className="text-gray-600 hover:text-primary-500 transition-colors"
-                >
-                  Terms of Service
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} PTE Practice. All rights reserved.
-          </p>
-          <div className="mt-4 md:mt-0">
-            <select
-              className="py-1 px-3 bg-white border border-gray-300 rounded text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-primary-500"
-              defaultValue="en"
+          ))}
+        </nav>
+        <div className="mt-8 flex justify-center space-x-6">
+          {navigation.social.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              className="text-gray-400 hover:text-gray-500"
             >
-              <option value="en">English</option>
-              <option value="es">Español</option>
-              <option value="fr">Français</option>
-              <option value="de">Deutsch</option>
-            </select>
-          </div>
+              <span className="sr-only">{item.name}</span>
+              <item.icon className="h-6 w-6" aria-hidden="true" />
+            </a>
+          ))}
         </div>
+        <p className="mt-8 text-center text-base text-gray-400">
+          &copy; {new Date().getFullYear()} LangPrep. All rights reserved.
+        </p>
       </div>
     </footer>
   );
