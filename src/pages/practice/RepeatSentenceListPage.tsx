@@ -2,10 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { ArrowLeft, Clock, CheckCircle } from "lucide-react"
 import Button from "../../components/common/Button"
-import {
-    repeatSentenceLessons,
-    RepeatSentenceLesson,
-} from "../data/repeatSentence"
+import { readAloudLessons, ReadAloudLesson } from "../../data/readAloud"
 import { practiceQuestions } from "../../data/sampleData"
 
 const difficultyColors = {
@@ -25,7 +22,7 @@ const RepeatSentenceListPage = () => {
     const [selectedDifficulty, setSelectedDifficulty] = useState<string>("all")
     const [showCompleted, setShowCompleted] = useState<boolean>(false)
 
-    const filteredLessons = repeatSentenceLessons.filter(lesson => {
+    const filteredLessons = readAloudLessons.filter(lesson => {
         if (
             selectedDifficulty !== "all" &&
             lesson.difficulty !== selectedDifficulty
@@ -38,7 +35,7 @@ const RepeatSentenceListPage = () => {
         return true
     })
 
-    const handleLessonSelect = (lesson: RepeatSentenceLesson) => {
+    const handleLessonSelect = (lesson: ReadAloudLesson) => {
         navigate(`/practice/speaking/repeat-sentence/${lesson.id}`, {
             state: { lesson, sample: practiceQuestions.repeatSentence },
         })
@@ -59,11 +56,11 @@ const RepeatSentenceListPage = () => {
                     </Button>
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">
-                            Repeat Sentence Practice
+                            Read Aloud Practice
                         </h1>
                         <p className="text-gray-600 mt-1">
-                            Practice repeating sentences accurately to improve
-                            your speaking and listening skills
+                            Improve your pronunciation and fluency with these
+                            carefully selected passages
                         </p>
                     </div>
                 </div>

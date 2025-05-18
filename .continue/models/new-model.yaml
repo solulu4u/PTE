@@ -1,0 +1,14 @@
+name: New model
+version: 0.0.1
+schema: v1
+models:
+    - provider: ollama
+      model: qwen 2.5 coder:1.5b
+      name: qwen 2.5 coder:1.5b
+    - provider: ollama
+      name: deepseek r1
+      model: deepseek-r1
+      roles:
+          - chat
+          - edit
+          - autocomplete
